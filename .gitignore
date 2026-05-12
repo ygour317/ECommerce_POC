@@ -1,0 +1,40 @@
+# --- Angular / Node (frontend) ---
+node_modules/
+dist/
+.angular/
+coverage/
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Maven / Java (backend) ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# --- IDE & editors ---
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Env & local secrets (do not commit real secrets) ---
+.env
+.env.local
+*.local.properties

@@ -1,0 +1,24 @@
+<div class="page">
+  <header class="top">
+    <div class="brand">Ecommerce</div>
+    <button type="button" class="ghost" (click)="logout()">Sign out</button>
+  </header>
+
+  <main class="content">
+    <h1>You are signed in</h1>
+    @if (loadError) {
+      <p class="error">{{ loadError }}</p>
+    } @else if (profile) {
+      <div class="panel">
+        <p><span class="label">Email</span> {{ profile.email }}</p>
+        <p><span class="label">Name</span> {{ profile.fullName || '—' }}</p>
+        <p><span class="label">Role</span> {{ profile.role }}</p>
+      </div>
+      <p class="muted">
+        This page calls <code>/api/auth/me</code> with the JWT from local storage.
+      </p>
+    } @else {
+      <p class="muted">Loading profile…</p>
+    }
+  </main>
+</div>
