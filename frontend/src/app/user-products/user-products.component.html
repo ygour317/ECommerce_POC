@@ -1,0 +1,51 @@
+<header class="shop-header">
+  <div class="shop-header-inner">
+    <span class="shop-name">Shop</span>
+    <div class="shop-header-actions">
+      @if (isAdmin) {
+        <a routerLink="/admin" class="link-admin">Admin</a>
+      }
+      <span class="who">{{ email }}</span>
+      <button type="button" class="btn-outline" (click)="logout()">Log out</button>
+    </div>
+  </div>
+</header>
+
+<main class="shop-main">
+  <div class="shop-intro">
+    <h1>Products</h1>
+    <p>Browse what we sell. Cart checkout will hook in here later.</p>
+  </div>
+
+  @if (errorMsg) {
+    <p class="alert">{{ errorMsg }}</p>
+  } @else if (products.length === 0) {
+    <p class="empty">Nothing listed yet.</p>
+  } @else {
+    <div class="card-grid">
+      @for (p of products; track p.id) {
+        <article class="product-card">
+          <div class="thumb" [style.background]="thumbColor(p.id)">
+            <span class="thumb-letter">{{ initial(p.name) }}</span>
+          </div>
+          <div class="card-body">
+            <p class="sku">{{ p.sku }}</p>
+            <h2>{{ p.name }}</h2>
+            <p class="desc">{{ p.description || 'No description.' }}</p>
+            <div class="card-meta">
+              <span class="price">{{ p.price | currency: 'USD' : 'symbol' : '1.2-2' }}</span>
+              @if (p.stockQuantity <= 0) {
+                <span class="badge out">Out of stock</span>
+              } @else if (p.stockQuantity <= 15) {
+                <span class="badge low">Only {{ p.stockQuantity }} left</span>
+              } @else {
+                <span class="badge ok">In stock</span>
+              }
+            </div>
+            <button type="button" class="btn-cart" disabled title="Cart coming later">Add to cart</button>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</main>

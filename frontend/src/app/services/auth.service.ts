@@ -46,6 +46,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_email');
+    localStorage.removeItem('user_role');
     void this.router.navigate(['/login']);
   }
 
@@ -57,8 +58,17 @@ export class AuthService {
     return !!this.token;
   }
 
+  isAdmin(): boolean {
+    return localStorage.getItem('user_role') === 'ADMIN';
+  }
+
+  getEmail(): string | null {
+    return localStorage.getItem('user_email');
+  }
+
   private setSession(res: AuthResponse): void {
     localStorage.setItem('access_token', res.token);
     localStorage.setItem('user_email', res.email);
+    localStorage.setItem('user_role', res.role);
   }
 }

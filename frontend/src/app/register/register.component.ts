@@ -25,7 +25,7 @@ export class RegisterComponent {
     this.loading = true;
     const name = this.fullName.trim();
     this.auth.register(this.email.trim(), this.password, name || undefined).subscribe({
-      next: () => void this.router.navigate(['/home']),
+      next: () => void this.router.navigate(['/products']),
       error: () => {
         this.errorMessage =
           'Could not register. The email may already be in use or the data is invalid.';

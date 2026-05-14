@@ -1,52 +1,26 @@
-<div class="auth-shell">
-  <div class="card">
-    <h1>Create account</h1>
-    <p class="muted">Register to start shopping.</p>
-    <p class="demo-hint">
-      Or sign in with seeded <strong>demo&#64;example.com</strong> / <strong>admin&#64;example.com</strong>
-      (password <code>Password123</code>).
+<div class="page">
+  <h1>Register</h1>
+  <p>Make a new account. Password must be at least 8 characters.</p>
+
+  <form (ngSubmit)="submit()" #f="ngForm">
+    <p>
+      <label>Your name (optional)<br /><input type="text" name="fullName" [(ngModel)]="fullName" autocomplete="name" /></label>
+    </p>
+    <p>
+      <label>Email<br /><input type="email" name="email" [(ngModel)]="email" required autocomplete="email" /></label>
+    </p>
+    <p>
+      <label>Password<br /><input type="password" name="password" [(ngModel)]="password" required minlength="8" autocomplete="new-password" /></label>
     </p>
 
-    <form (ngSubmit)="submit()" #f="ngForm">
-      <label>
-        <span>Full name <span class="optional">(optional)</span></span>
-        <input type="text" name="fullName" [(ngModel)]="fullName" autocomplete="name" />
-      </label>
-      <label>
-        <span>Email</span>
-        <input
-          type="email"
-          name="email"
-          [(ngModel)]="email"
-          required
-          autocomplete="email"
-        />
-      </label>
-      <label>
-        <span>Password</span>
-        <input
-          type="password"
-          name="password"
-          [(ngModel)]="password"
-          required
-          minlength="8"
-          autocomplete="new-password"
-        />
-      </label>
-      <p class="hint">At least 8 characters.</p>
+    @if (errorMessage) {
+      <p class="err">{{ errorMessage }}</p>
+    }
 
-      @if (errorMessage) {
-        <p class="error">{{ errorMessage }}</p>
-      }
-
-      <button type="submit" [disabled]="f.invalid || loading">
-        {{ loading ? 'Creating account…' : 'Register' }}
-      </button>
-    </form>
-
-    <p class="footer">
-      Already have an account?
-      <a routerLink="/login">Sign in</a>
+    <p>
+      <button type="submit" [disabled]="f.invalid || loading">{{ loading ? 'Please wait…' : 'Register' }}</button>
     </p>
-  </div>
+  </form>
+
+  <p><a routerLink="/login">Already registered? Log in</a></p>
 </div>

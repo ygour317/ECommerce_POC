@@ -6,16 +6,16 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  background: #f4f6fb;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #f1f5f9;
   color: #0f172a;
+  font-size: 15px;
 }
 
 a {
   color: #2563eb;
-  text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+a:visited {
+  color: #6d28d9;
 }

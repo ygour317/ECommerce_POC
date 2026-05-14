@@ -1,0 +1,42 @@
+<section>
+  <h1 class="page-title">All products</h1>
+  <p class="lead">Update stock or details, or remove items from the shop.</p>
+
+  @if (errorMsg) {
+    <p class="alert error">{{ errorMsg }}</p>
+  }
+
+  @if (products.length === 0 && !errorMsg) {
+    <p class="empty">No products in the database yet. Use <strong>Add product</strong> in the menu above.</p>
+  } @else if (products.length > 0) {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of products; track p.id) {
+            <tr>
+              <td class="mono">{{ p.sku }}</td>
+              <td>{{ p.name }}</td>
+              <td>{{ p.price | currency: 'USD' : 'symbol' : '1.2-2' }}</td>
+              <td>{{ p.stockQuantity }}</td>
+              <td class="actions">
+                <button type="button" class="btn-text" (click)="goEdit(p.id)">Update</button>
+                <button type="button" class="btn-text danger" [disabled]="busyId === p.id" (click)="remove(p)">
+                  {{ busyId === p.id ? '…' : 'Delete' }}
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

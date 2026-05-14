@@ -1,0 +1,41 @@
+<section>
+  <p class="back"><a routerLink="/admin/products">← All products</a></p>
+  <h1 class="page-title">Update product</h1>
+  <p class="lead">SKU cannot be changed; delete the product and create a new one if the code was wrong.</p>
+
+  @if (loadErr) {
+    <p class="alert error">{{ loadErr }}</p>
+  } @else if (productId != null) {
+    @if (err) {
+      <p class="alert error">{{ err }}</p>
+    }
+
+    <form class="card-form" (ngSubmit)="save()">
+      <label>
+        <span>Name</span>
+        <input type="text" name="name" [(ngModel)]="form.name" required maxlength="200" />
+      </label>
+      <label>
+        <span>Description</span>
+        <textarea name="description" rows="4" [(ngModel)]="form.description" maxlength="2000"></textarea>
+      </label>
+      <div class="row2">
+        <label>
+          <span>Price (USD)</span>
+          <input type="number" name="price" [(ngModel)]="form.price" min="0.01" step="0.01" required />
+        </label>
+        <label>
+          <span>Stock quantity</span>
+          <input type="number" name="stockQuantity" [(ngModel)]="form.stockQuantity" min="0" required />
+        </label>
+      </div>
+      <label>
+        <span>SKU</span>
+        <input type="text" [value]="form.sku" disabled />
+      </label>
+      <div class="actions">
+        <button type="submit" class="btn-primary" [disabled]="saving">{{ saving ? 'Saving…' : 'Save changes' }}</button>
+      </div>
+    </form>
+  }
+</section>

@@ -1,48 +1,26 @@
-<div class="auth-shell">
-  <div class="card">
-    <h1>Sign in</h1>
-    <p class="muted">Welcome back. Use your account credentials.</p>
-    <p class="demo-hint">
-      Dev accounts (password <code>Password123</code>):
-      <strong>demo&#64;example.com</strong> (shopper) ·
-      <strong>admin&#64;example.com</strong> (manage products)
+<div class="page">
+  <h1>Log in</h1>
+  <p>Enter your email and password.</p>
+  <p class="note">
+    For testing: demo&#64;example.com or admin&#64;example.com — password is Password123 (with capital P).
+  </p>
+
+  <form (ngSubmit)="submit()" #f="ngForm">
+    <p>
+      <label>Email<br /><input type="email" name="email" [(ngModel)]="email" required autocomplete="email" /></label>
+    </p>
+    <p>
+      <label>Password<br /><input type="password" name="password" [(ngModel)]="password" required minlength="8" autocomplete="current-password" /></label>
     </p>
 
-    <form (ngSubmit)="submit()" #f="ngForm">
-      <label>
-        <span>Email</span>
-        <input
-          type="email"
-          name="email"
-          [(ngModel)]="email"
-          required
-          autocomplete="email"
-        />
-      </label>
-      <label>
-        <span>Password</span>
-        <input
-          type="password"
-          name="password"
-          [(ngModel)]="password"
-          required
-          minlength="8"
-          autocomplete="current-password"
-        />
-      </label>
+    @if (errorMessage) {
+      <p class="err">{{ errorMessage }}</p>
+    }
 
-      @if (errorMessage) {
-        <p class="error">{{ errorMessage }}</p>
-      }
-
-      <button type="submit" [disabled]="f.invalid || loading">
-        {{ loading ? 'Signing in…' : 'Sign in' }}
-      </button>
-    </form>
-
-    <p class="footer">
-      No account?
-      <a routerLink="/register">Create one</a>
+    <p>
+      <button type="submit" [disabled]="f.invalid || loading">{{ loading ? 'Please wait…' : 'Log in' }}</button>
     </p>
-  </div>
+  </form>
+
+  <p><a href="/register" (click)="goRegister($event)">No account? Register here</a></p>
 </div>

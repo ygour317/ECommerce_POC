@@ -1,0 +1,37 @@
+<section>
+  <p class="back"><a routerLink="/admin/products">← All products</a></p>
+  <h1 class="page-title">Add product</h1>
+  <p class="lead">New items appear in the store as soon as you save.</p>
+
+  @if (err) {
+    <p class="alert error">{{ err }}</p>
+  }
+
+  <form class="card-form" (ngSubmit)="save()">
+    <label>
+      <span>Name</span>
+      <input type="text" name="name" [(ngModel)]="form.name" required maxlength="200" />
+    </label>
+    <label>
+      <span>Description</span>
+      <textarea name="description" rows="4" [(ngModel)]="form.description" maxlength="2000"></textarea>
+    </label>
+    <div class="row2">
+      <label>
+        <span>Price (USD)</span>
+        <input type="number" name="price" [(ngModel)]="form.price" min="0.01" step="0.01" required />
+      </label>
+      <label>
+        <span>Stock quantity</span>
+        <input type="number" name="stockQuantity" [(ngModel)]="form.stockQuantity" min="0" required />
+      </label>
+    </div>
+    <label>
+      <span>SKU (unique code)</span>
+      <input type="text" name="sku" [(ngModel)]="form.sku" required maxlength="64" />
+    </label>
+    <div class="actions">
+      <button type="submit" class="btn-primary" [disabled]="saving">{{ saving ? 'Saving…' : 'Save product' }}</button>
+    </div>
+  </form>
+</section>

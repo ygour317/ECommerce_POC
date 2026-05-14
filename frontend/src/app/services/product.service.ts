@@ -40,4 +40,8 @@ export class ProductService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.base}/${id}`);
   }
+
+  getById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.base}/${id}`);
+  }
 }

@@ -1,0 +1,22 @@
+<nav class="admin-nav">
+  <div class="nav-left">
+    <span class="logo">Store admin</span>
+    <div class="links">
+      <a
+        routerLink="/admin/products"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >All products</a>
+      <a routerLink="/admin/products/add" routerLinkActive="active">Add product</a>
+      <a routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a routerLink="/products" class="store-link">View store</a>
+    <button type="button" class="btn-logout" (click)="logout()">Log out</button>
+  </div>
+</nav>
+
+<main class="admin-content">
+  <router-outlet />
+</main>
